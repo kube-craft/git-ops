@@ -1,0 +1,28 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: argocd-ingress
+#  namespace: argocd # Ingress namespace
+  annotations:
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS" # To support HTTPS
+
+#    nginx.ingress.kubernetes.io/service-upstream: "true"  # Ensure NGINX looks for the service in another namespace
+#    nginx.ingress.kubernetes.io/ssl-redirect: "true" # Ensures that HTTP requests are redirected to HTTPS
+
+#    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+#    nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: argocd.int.taqniat.ae
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: argocd-server
+                port:
+#                  name: https   # change svc port to this or create new service with this port
+                  number: 80   # change svc port to this or create new service with this port
