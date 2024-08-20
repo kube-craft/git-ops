@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tempo-deployment
+  labels:
+    app: tempo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tempo
+  template:
+    metadata:
+      name: tempo
+      labels:
+        app: tempo
+    spec:
+      containers:
+        - name: tempo
+          image: grafana/tempo:latest
+#          image: grafana/tempo:2.2.2
+          imagePullPolicy: IfNotPresent
+          args:
+            - --config.file=/etc/tempo/config.yml
+          ports:
+            - containerPort: 3200   # tempo
+              protocol: TCP
+            - containerPort: 9411   # zipkin
+              protocol: TCP
+            - containerPort: 4317   # ?
+              protocol: TCP
+#          resources:
+#            limits:
+#              memory: "700Mi"
+          volumeMounts:
+            - name: tempo-vol
+              mountPath: /tmp/tempo
+            - name: tempo-config
+#              mountPath: /etc/tempo                      # it will remove the directory and just map this file,
+              mountPath: /etc/tempo/config.yml     # this will only mount this file and rest will keep intact
+              subPath: config.yml
+      restartPolicy: Always
+      volumes:
+        - name: tempo-config
+          configMap:
+            name: tempo-config
+            items:
+              - key: "config.yml"
+                path: "config.yml"
+        - name: tempo-vol
+          persistentVolumeClaim:
+#            claimName: tempo-pvc-local
+            claimName: tempo-pvc-nfs-sc
