@@ -1,18 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: gitea
+  name: gitea-app
   namespace: argocd
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
     name: ''
     namespace: git-ops
     server: https://kubernetes.default.svc
   source:
-    path: ./gitea
-    repoURL: https://gitea.int.taqniat.ae/twasol/git-ops.git
+    path: ./argocd-declarative/manifests/gitea-app
+#    repoURL: https://gitea.int.taqniat.ae/twasol/git-ops.git
+    repoURL: https://github.com/kube-craft/git-ops.git
     targetRevision: HEAD
     directory:
       exclude: '*-local-*'
