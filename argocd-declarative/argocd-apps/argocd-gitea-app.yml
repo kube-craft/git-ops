@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: gitea
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    name: ''
+    namespace: git-ops
+    server: https://kubernetes.default.svc
+  source:
+    path: ./gitea
+    repoURL: https://gitea.int.taqniat.ae/twasol/git-ops.git
+    targetRevision: HEAD
+    directory:
+      exclude: '*-local-*'
+  sources: []
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
