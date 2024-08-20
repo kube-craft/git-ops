@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: traffic-generator
+spec:
+  containers:
+    - name: alpine
+      image: alpine
+      args:
+        - sleep
+        - "100000000"
+
+# kubectl exec -n autoscaling-demo -it traffic-generator -- /bin/sh
+# apk add wrk
+# wrk -c 5 -t 5 -d 150s -H "Connection: Close" http://utility-api-service:8080/api/stress
