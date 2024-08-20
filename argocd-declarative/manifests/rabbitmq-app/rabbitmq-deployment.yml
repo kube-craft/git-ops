@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rabbitmq-deployment
+  labels:
+    app: rabbitmq
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rabbitmq
+  template:
+    metadata:
+      name: rabbitmq
+      labels:
+        app: rabbitmq
+    spec:
+      containers:
+        - name: rabbitmq
+#          image: 'rabbitmq:latest'
+#          image: "rabbitmq:management"
+          image: rabbitmq:3-management  # Use the image with management plugin
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: RABBITMQ_DEFAULT_USER
+              value: "guest"
+            - name: RABBITMQ_DEFAULT_PASS
+              value: "guest"
+            - name: LANG
+              value: "en_US.utf8"
+            - name: LC_ALL
+              value: "en_US.utf8"
+            - name: JDK_JAVA_OPTIONS
+              value: "-Dfile.encoding=UTF-8 -Dsun.jnu.encoding=UTF-8"
+          ports:
+            - containerPort: 5672
+              protocol: TCP
+            - containerPort: 15672
+              protocol: TCP
+          volumeMounts:
+            - name: rabbitmq-vol
+              mountPath: /var/lib/rabbitmq
+      restartPolicy: Always
+      volumes:
+        - name: rabbitmq-vol
+          persistentVolumeClaim:
+#            claimName: rabbitmq-pvc-local
+            claimName: rabbitmq-pvc-nfs-sc
