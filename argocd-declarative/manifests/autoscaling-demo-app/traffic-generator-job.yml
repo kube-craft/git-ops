@@ -15,6 +15,12 @@ spec:
           args:
             - |
               apk add --no-cache wrk &&
-              wrk -c 5 -t 5 -d 150s -H "Connection: Close" http://utility-api-service:8080/api/stress
+              wrk -c 5 -t 5 -d 30s -H "Connection: Close" http://utility-api-service:8080/api/stress
       restartPolicy: Never
   backoffLimit: 4
+
+# kubectl run -it --rm --restart=Never testpod --image=alpine -- sh
+# or
+# kubectl exec -n autoscaling-demo -it traffic-generator -- /bin/sh
+# apk add wrk
+# wrk -c 5 -t 5 -d 150s -H "Connection: Close" http://utility-api-service:8080/api/stress
