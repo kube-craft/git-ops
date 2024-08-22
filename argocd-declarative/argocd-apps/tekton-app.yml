@@ -10,6 +10,8 @@ spec:
     repoURL: https://github.com/kube-craft/git-ops.git
     targetRevision: HEAD
     path: ./argocd-declarative/manifests/tekton-app
+    directory:
+      recurse: true
 
   destination:
     server: https://kubernetes.default.svc
