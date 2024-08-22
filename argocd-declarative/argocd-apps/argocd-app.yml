@@ -14,8 +14,9 @@ spec:
     targetRevision: HEAD
     directory:
       exclude: '*-local-*'
+      recurse: true
   sources: []
-  project: default
+  project: infrastructure
   syncPolicy:
     automated:
       prune: true
