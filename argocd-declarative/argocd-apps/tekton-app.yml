@@ -4,7 +4,7 @@ metadata:
   name: tekton-app
   namespace: argocd
 spec:
-  project: default
+  project: git-ops
 
   source:
     repoURL: https://github.com/kube-craft/git-ops.git
@@ -15,7 +15,7 @@ spec:
 
   destination:
     server: https://kubernetes.default.svc
-    namespace: tekton-pipelines
+    namespace: tekton
 
   syncPolicy:
     syncOptions:

@@ -4,7 +4,7 @@ metadata:
   name: autoscaling-demo-app
   namespace: argocd
 spec:
-  project: default
+  project: apps
 
   source:
     repoURL: https://github.com/kube-craft/git-ops.git
@@ -13,7 +13,7 @@ spec:
 
   destination:
     server: https://kubernetes.default.svc
-    namespace: autoscaling-demo
+    namespace: autoscaling-demo-app
 
   syncPolicy:
     syncOptions:

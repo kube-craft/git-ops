@@ -1,0 +1,12 @@
+---
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  name: hello-goodbye-run-1320
+  namespace: tekton-demo
+spec:
+  pipelineRef:
+    name: hello-goodbye
+  params:
+  - name: username
+    value: chacha

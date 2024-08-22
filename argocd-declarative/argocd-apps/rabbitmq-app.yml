@@ -6,7 +6,7 @@ metadata:
 spec:
   destination:
     name: ''
-    namespace: git-ops
+    namespace: apps
     server: https://kubernetes.default.svc
   source:
     path: ./argocd-declarative/manifests/rabbitmq-app
@@ -16,7 +16,7 @@ spec:
     directory:
       exclude: '*-local-*'
   sources: []
-  project: default
+  project: apps
   syncPolicy:
     automated:
       prune: true

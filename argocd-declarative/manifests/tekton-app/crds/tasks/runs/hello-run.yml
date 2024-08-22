@@ -1,0 +1,12 @@
+apiVersion: tekton.dev/v1 # or tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  #  generateName: hello-101
+  name: hello-1022
+  namespace: tekton-demo
+spec:
+  params:
+    - name: greeting
+      value: "Hola world!"
+  taskRef:
+    name: hello

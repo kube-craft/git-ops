@@ -6,7 +6,7 @@ metadata:
 spec:
   destination:
     name: ''
-    namespace: git-ops
+    namespace: gitea
     server: https://kubernetes.default.svc
   source:
     path: ./argocd-declarative/manifests/gitea-app
@@ -16,7 +16,7 @@ spec:
     directory:
       exclude: '*-local-*'
   sources: []
-  project: default
+  project: git-ops
   syncPolicy:
     automated:
       prune: true

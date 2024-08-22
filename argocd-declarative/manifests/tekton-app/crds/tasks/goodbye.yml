@@ -1,0 +1,16 @@
+apiVersion: tekton.dev/v1
+kind: Task
+metadata:
+  name: goodbye
+  namespace: tekton-demo
+spec:
+  params:
+    - name: username
+      default: Default Task User
+  steps:
+    - name: echo
+      image: docker.io/library/alpine
+      script: |
+        #!/bin/sh
+        echo "Goodbye World!"
+        echo "$(params.username)"

@@ -1,0 +1,15 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: hello
+  namespace: tekton-demo
+spec:
+  params:
+    - name: greeting
+      default: Hello World
+  steps:
+    - name: echo
+      image: docker.io/library/alpine
+      script: |
+        #!/bin/sh
+        echo "$(params.greeting)"
