@@ -8,7 +8,7 @@ metadata:
 #    nginx.ingress.kubernetes.io/add-base-url: "true"
 #    nginx.ingress.kubernetes.io/rewrite-target: /$1
 #    nginx.ingress.kubernetes.io/rewrite-target: /$2
-    nginx.ingress.kubernetes.io/proxy-body-size: "500m"
+    nginx.ingress.kubernetes.io/proxy-body-size: "2500m"
 spec:
   ingressClassName: nginx
   rules:
