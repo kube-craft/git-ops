@@ -16,7 +16,8 @@ k -n argocd apply -f https://raw.githubusercontent.com/kube-craft/git-ops/main/a
 #argocd
 k -n argocd apply -f argocd-declarative/argocd-apps/argocd-app.yml
 k -n argocd apply -f https://raw.githubusercontent.com/kube-craft/git-ops/main/argocd-declarative/argocd-apps/argocd-app.yml
-
+k -n argocd apply -f https://raw.githubusercontent.com/kube-craft/git-ops/main/argocd-declarative/argocd-apps/autoscaling-demo-app.yml
+k -n argocd apply -f https://raw.githubusercontent.com/kube-craft/git-ops/main/argocd-declarative/argocd-apps/tempo-app.yml
 k -n argocd get applications
 
 #get initial password
