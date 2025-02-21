@@ -1,10 +1,15 @@
 # prerequisites for new cluster
-k apply -f https://raw.githubusercontent.com/kube-craft/git-ops/main/argocd-declarative/manifests/ingress-app/baremetal-deploy.yml
+#k apply -f https://raw.githubusercontent.com/kube-craft/git-ops/main/argocd-declarative/manifests/ingress-app/baremetal-deploy.yml
 
 #Start single apps
 # Install Argo
 k create namespace argocd
+
+k apply -n argocd -f argocd-install.yml
+k apply -n argocd -f argocd-ingress.yml
+#or
 k -n argocd apply -f https://raw.githubusercontent.com/kube-craft/git-ops/main/argocd-declarative/manifests/argocd-app/argocd-install.yml
+k -n argocd apply -f https://raw.githubusercontent.com/kube-craft/git-ops/main/argocd-declarative/manifests/argocd-app/argocd-ingress.yml
 
 # Add repo
 k -n argocd apply -f https://raw.githubusercontent.com/kube-craft/git-ops/main/argocd-declarative/manifests/argocd-app/public-github-repo.yml
