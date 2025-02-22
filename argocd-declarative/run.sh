@@ -9,18 +9,32 @@ k apply -n argocd -f argocd-install.yml
 k apply -n argocd -f argocd-ingress.yml
 #or
 k -n argocd apply -f https://raw.githubusercontent.com/kube-craft/git-ops/main/argocd-declarative/manifests/argocd-app/argocd-install.yml
+
+k apply -f https://raw.githubusercontent.com/kube-craft/git-ops/main/argocd-declarative/manifests/ingress-app/baremetal-deploy.yml
+
 k -n argocd apply -f https://raw.githubusercontent.com/kube-craft/git-ops/main/argocd-declarative/manifests/argocd-app/argocd-ingress.yml
 
 # Add repo
 k -n argocd apply -f https://raw.githubusercontent.com/kube-craft/git-ops/main/argocd-declarative/manifests/argocd-app/public-github-repo.yml
-k -n argocd apply -f https://raw.githubusercontent.com/kube-craft/git-ops/main/argocd-declarative/manifests/argocd-app/private-gitea-repo.yml
+# k -n argocd apply -f https://raw.githubusercontent.com/kube-craft/git-ops/main/argocd-declarative/manifests/argocd-app/private-gitea-repo.yml
 
 # Add Projects and Applications
 k -n argocd apply -f https://raw.githubusercontent.com/kube-craft/git-ops/main/argocd-declarative/manifests/argocd-app/projects/infrastructure.yml
 
 #argocd
-k -n argocd apply -f argocd-declarative/argocd-apps/argocd-app.yml
+# k -n argocd apply -f argocd-declarative/argocd-apps/argocd-app.yml
 k -n argocd apply -f https://raw.githubusercontent.com/kube-craft/git-ops/main/argocd-declarative/argocd-apps/argocd-app.yml
+k -n argocd apply -f https://raw.githubusercontent.com/kube-craft/git-ops/main/argocd-declarative/argocd-apps/ingress-app.yml
+
+
+k -n argocd apply -f https://raw.githubusercontent.com/kube-craft/git-ops/main/argocd-declarative/argocd-apps/nifi-app.yml
+
+
+# has issues, sync with single instance with old backup
+k -n argocd apply -f https://raw.githubusercontent.com/kube-craft/git-ops/main/argocd-declarative/argocd-apps/metrics-app.yml
+
+
+
 k -n argocd apply -f https://raw.githubusercontent.com/kube-craft/git-ops/main/argocd-declarative/argocd-apps/autoscaling-demo-app.yml
 k -n argocd apply -f https://raw.githubusercontent.com/kube-craft/git-ops/main/argocd-declarative/argocd-apps/tempo-app.yml
 k -n argocd get applications

@@ -3,6 +3,14 @@ kind: Ingress
 metadata:
   name: nifi-ingress
   namespace: nifi
+  annotations:
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS" # To support HTTPS
+
+#    nginx.ingress.kubernetes.io/service-upstream: "true"  # Ensure NGINX looks for the service in another namespace
+#    nginx.ingress.kubernetes.io/ssl-redirect: "true" # Ensures that HTTP requests are redirected to HTTPS
+
+#    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+#    nginx.ingress.kubernetes.io/ssl-passthrough: "true"
 spec:
   ingressClassName: nginx
   rules:

@@ -9,7 +9,7 @@ spec:
   source:
     repoURL: https://github.com/kube-craft/git-ops.git
     targetRevision: HEAD
-    path: ./argocd-declarative/manifests/metrics-app
+    path: ./argocd-declarative/manifests/metrics-app/standalone
 
   destination:
     server: https://kubernetes.default.svc
