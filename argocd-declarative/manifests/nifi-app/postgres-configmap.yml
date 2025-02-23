@@ -5,6 +5,4 @@ metadata:
   namespace: nifi
 data:
   init.sql: |
-    # Paste your init.sql content here
-    # Example:
     CREATE TABLE test (id SERIAL PRIMARY KEY, name VARCHAR(100));
