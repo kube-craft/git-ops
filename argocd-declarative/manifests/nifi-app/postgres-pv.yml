@@ -1,0 +1,18 @@
+#sudo mkdir -p /k8s/data/postgres
+#sudo chmod 777 /k8s/data/postgres
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: postgres-hostpath-pv
+spec:
+  capacity:
+    storage: 1Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+#  persistentVolumeReclaimPolicy: Delete
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: local-storage
+  hostPath:
+    path: /k8s/data/postgres  # Path on the Docker Desktop host machine
+    type: DirectoryOrCreate
