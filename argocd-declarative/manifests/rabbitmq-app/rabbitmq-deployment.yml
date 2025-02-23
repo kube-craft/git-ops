@@ -19,7 +19,8 @@ spec:
         - name: rabbitmq
 #          image: 'rabbitmq:latest'
 #          image: "rabbitmq:management"
-          image: rabbitmq:3-management  # Use the image with management plugin
+#          image: rabbitmq:3-management  # Use the image with management plugin
+          image: rabbitmq:4-management  # Use the image with management plugin
           imagePullPolicy: IfNotPresent
           env:
             - name: RABBITMQ_DEFAULT_USER
