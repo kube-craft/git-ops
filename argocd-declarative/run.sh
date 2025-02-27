@@ -21,6 +21,7 @@ k -n argocd apply -f https://raw.githubusercontent.com/kube-craft/git-ops/main/a
 # Add Projects and Applications
 k -n argocd apply -f https://raw.githubusercontent.com/kube-craft/git-ops/main/argocd-declarative/manifests/argocd-app/projects/infrastructure.yml
 
+
 #argocd
 # k -n argocd apply -f argocd-declarative/argocd-apps/argocd-app.yml
 k -n argocd apply -f https://raw.githubusercontent.com/kube-craft/git-ops/main/argocd-declarative/argocd-apps/argocd-app.yml
