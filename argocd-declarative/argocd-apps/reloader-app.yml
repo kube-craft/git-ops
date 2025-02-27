@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: reloader-app
+  namespace: argocd
+spec:
+  project: apps
+
+  source:
+    repoURL: https://github.com/kube-craft/git-ops.git
+    targetRevision: HEAD
+    path: ./argocd-declarative/manifests/reloader-app
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: reloader
+
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+      prune: true
+      selfHeal: true

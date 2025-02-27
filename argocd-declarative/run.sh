@@ -25,7 +25,7 @@ k -n argocd apply -f https://raw.githubusercontent.com/kube-craft/git-ops/main/a
 # k -n argocd apply -f argocd-declarative/argocd-apps/argocd-app.yml
 k -n argocd apply -f https://raw.githubusercontent.com/kube-craft/git-ops/main/argocd-declarative/argocd-apps/argocd-app.yml
 k -n argocd apply -f https://raw.githubusercontent.com/kube-craft/git-ops/main/argocd-declarative/argocd-apps/ingress-app.yml
-
+k -n argocd apply -f https://raw.githubusercontent.com/kube-craft/git-ops/main/argocd-declarative/argocd-apps/reloader-app.yml
 
 k -n argocd apply -f https://raw.githubusercontent.com/kube-craft/git-ops/main/argocd-declarative/argocd-apps/nifi-app.yml
 
