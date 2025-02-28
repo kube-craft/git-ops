@@ -34,7 +34,7 @@ spec:
               # mountPath: /var/lib/postgresql/data
               mountPath: /var/lib/postgresql/test              
             - name: init-scripts
-              # mountPath: /docker-entrypoint-initdb.d
+              mountPath: /docker-entrypoint-initdb.d
       volumes:
         - name: postgres-storage
           persistentVolumeClaim:
