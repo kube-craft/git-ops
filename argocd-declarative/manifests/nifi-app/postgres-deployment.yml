@@ -29,10 +29,11 @@ spec:
               value: postgres
             - name: POSTGRES_DB
               value: postgres
+            - name: POSTGRES_INITDB_WALDIR
+              value: /var/lib/postgresql/data/db
           volumeMounts:
             - name: postgres-storage
-              # mountPath: /var/lib/postgresql/data
-              mountPath: /var/lib/postgresql/test              
+              mountPath: /var/lib/postgresql/data
             - name: init-scripts
               mountPath: /docker-entrypoint-initdb.d
       volumes:
