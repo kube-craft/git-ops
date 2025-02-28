@@ -29,8 +29,10 @@ spec:
               value: postgres
             - name: POSTGRES_DB
               value: postgres
-            - name: POSTGRES_INITDB_WALDIR
-              value: /var/lib/postgresql/data/db
+            - name: PGDATA
+              value: /var/lib/postgresql/data/pgdata
+            # - name: POSTGRES_INITDB_ARGS
+              # value: --data-checksums            
           volumeMounts:
             - name: postgres-storage
               mountPath: /var/lib/postgresql/data
