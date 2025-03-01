@@ -3,6 +3,39 @@ kind: ConfigMap
 metadata:
   name: postgres-init-scripts
   namespace: nifi
+  labels:
+    app: database  
 data:
   init.sql: |
-    CREATE TABLE test (id SERIAL PRIMARY KEY, name VARCHAR(100));
+    CREATE TABLE employees (
+        id SERIAL PRIMARY KEY,
+        name VARCHAR(100) NOT NULL,
+        position VARCHAR(100),
+        salary DECIMAL(10,2),
+        hired_on DATE DEFAULT CURRENT_DATE
+    );
+
+    CREATE TABLE products (
+        id SERIAL PRIMARY KEY,
+        name VARCHAR(100) NOT NULL,
+        category VARCHAR(100),
+        price DECIMAL(10,2),
+        stock INT
+    );
+
+    CREATE TABLE orders (
+        id SERIAL PRIMARY KEY,
+        customer_name VARCHAR(100),
+        order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        total_amount DECIMAL(10,2)
+    );
+
+    INSERT INTO employees (name, position, salary) VALUES
+    ('Alice Johnson', 'Manager', 75000),
+    ('Bob Smith', 'Developer', 65000),
+    ('Charlie Brown', 'Sales', 55000);
+
+    INSERT INTO products (name, category, price, stock) VALUES
+    ('Laptop', 'Electronics', 1200.00, 15),
+    ('Smartphone', 'Electronics', 800.00, 30),
+    ('Office Chair', 'Furniture', 150.00, 20);
