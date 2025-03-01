@@ -11,7 +11,7 @@ metadata:
   namespace: pgadmin
 type: Opaque
 data:
-  PGADMIN_DEFAULT_EMAIL: cGdhZG1pbiBAYWRtaW4uY29t  # Base64 for "pgadmin@admin.com"
+  PGADMIN_DEFAULT_EMAIL: cGdhZG1pbkBhZG1pbi5jb20=  # Base64 for "pgadmin@admin.com"
   PGADMIN_DEFAULT_PASSWORD: cGFzc3dvcmQ=            # Base64 for "password"
 
 ---
@@ -38,8 +38,8 @@ spec:
           ports:
             - containerPort: 80
           environment:
-            # PGADMIN_DEFAULT_EMAIL: admin@example.com
-            # PGADMIN_DEFAULT_PASSWORD: admin
+            # PGADMIN_DEFAULT_EMAIL: pgadmin@admin.com
+            # PGADMIN_DEFAULT_PASSWORD: password
             PGADMIN_CONFIG_LOGIN_BANNER: Authorised users only!
           envFrom:
             - secretRef:
