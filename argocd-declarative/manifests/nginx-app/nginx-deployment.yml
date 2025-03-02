@@ -24,6 +24,11 @@ spec:
             - name: nginx-config
               mountPath: /etc/nginx/nginx.conf
               subPath: nginx.conf
+          env:
+            - name: hostname
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name    
       volumes:
         - name: nginx-config
           configMap:

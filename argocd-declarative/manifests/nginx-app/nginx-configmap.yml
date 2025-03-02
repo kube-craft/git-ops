@@ -26,5 +26,10 @@ data:
                 root /usr/share/nginx/html;
                 index index.html;
             }
+            location /hostname {
+                default_type text/plain;
+                add_header Content-Type text/plain;
+                return 200 "Hostname: $hostname\n";
+            }  
         }
     }
