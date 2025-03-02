@@ -1,0 +1,15 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: nginx-cert
+  namespace: nifi
+spec:
+  secretName: nginx-cert-secret
+  issuerRef:
+    name: selfsigned-cluster-issuer
+    kind: ClusterIssuer
+  commonName: nginx.int.taqniat.ae
+  dnsNames:
+    - nginx.int.taqniat.ae
+
+# kubectl describe certificate -n nginx
