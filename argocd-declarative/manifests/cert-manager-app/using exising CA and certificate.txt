@@ -1,0 +1,39 @@
+1. Create a Kubernetes Secret for TLS
+You need to create a TLS secret that contains your wildcard certificate, CA certificate, and private key.
+
+kubectl create secret tls wildcard-cert-secret \
+  --namespace default \
+  --cert=wildcard.crt \
+  --key=wildcard.key
+
+If your certificate chain includes a CA certificate, you need to combine it with your wildcard certificate:
+
+cat wildcard.crt ca.crt > fullchain.crt
+Then use fullchain.crt instead of wildcard.crt in the kubectl create secret command.
+
+2. Update Your Ingress to Use the TLS Secret
+Modify your Ingress resource to use your wildcard certificate.
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nginx-ingress
+  namespace: nginx
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+spec:
+  rules:
+  - host: myapp.yourdomain.com  # Replace with your domain
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: nginx-service
+            port:
+              number: 80
+  tls:
+  - hosts:
+    - "*.yourdomain.com"  # Use your wildcard domain
+    secretName: wildcard-cert-secret  # This must match the secret name created earlier

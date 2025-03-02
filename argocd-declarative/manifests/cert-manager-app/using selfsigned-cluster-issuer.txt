@@ -1,0 +1,42 @@
+1. Create a Certificate for NGINX
+
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: nginx-cert
+  namespace: nginx
+spec:
+  secretName: nginx-cert-secret
+  issuerRef:
+    name: selfsigned-issuer
+    kind: ClusterIssuer
+  commonName: myapp.yourdomain.com
+  dnsNames:
+    - myapp.yourdomain.com
+
+
+2. Update Your Ingress to Use the TLS Secret
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nginx-ingress
+  namespace: nginx
+  annotations:
+    cert-manager.io/cluster-issuer: "selfsigned-issuer"
+spec:
+  rules:
+  - host: myapp.yourdomain.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: my-app
+            port:
+              number: 80
+  tls:
+  - hosts:
+    - myapp.yourdomain.com
+    secretName: nginx-cert-secret
