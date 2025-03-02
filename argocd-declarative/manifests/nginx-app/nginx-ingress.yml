@@ -5,6 +5,7 @@ metadata:
   namespace: nginx
   annotations:
     cert-manager.io/cluster-issuer: "selfsigned-cluster-issuer"
+    # nginx.ingress.kubernetes.io/ssl-redirect: "true"    
 spec:
   ingressClassName: nginx
   rules:

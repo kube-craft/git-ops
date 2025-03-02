@@ -4,3 +4,11 @@ metadata:
   name: selfsigned-cluster-issuer
 spec:
   selfSigned: {}
+
+
+# If you have a custom CA certificate and key, create a secret:
+# kubectl create secret tls custom-ca-secret --cert=ca.crt --key=ca.key -n cert-manager
+# 
+# spec:
+  # ca:
+    # secretName: custom-ca-secret
