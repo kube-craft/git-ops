@@ -16,6 +16,8 @@ spec:
       labels:
         app: nifi
     spec:
+      hostNetwork: true
+      dnsPolicy: ClusterFirstWithHostNet  # Ensures proper DNS resolution      
       containers:
         - name: nifi
           image: docker.io/apache/nifi:2.2.0
