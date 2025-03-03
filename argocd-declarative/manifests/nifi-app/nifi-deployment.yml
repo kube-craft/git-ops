@@ -44,9 +44,9 @@ spec:
             # - name: NIFI_DB_DIR
             #   value: "/opt/nifi/nifi-current/database_repository"
           volumeMounts:
-            - name: nifi-storage
-              mountPath: /opt/nifi/nifi-current/conf
-              subPath: conf
+            # - name: nifi-storage
+            #   mountPath: /opt/nifi/nifi-current/conf
+            #   subPath: conf
             - name: nifi-storage
               mountPath: /opt/nifi/nifi-current/logs
               subPath: logs
