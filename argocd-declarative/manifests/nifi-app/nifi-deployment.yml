@@ -44,31 +44,31 @@ spec:
             # - name: NIFI_DB_DIR
             #   value: "/opt/nifi/nifi-current/database_repository"
           volumeMounts:
-            - name: nifi-conf
+            - name: nifi-storage
               mountPath: /opt/nifi/nifi-current/conf
               subPath: conf
-            - name: nifi-logs
+            - name: nifi-storage
               mountPath: /opt/nifi/nifi-current/logs
               subPath: logs
-            - name: nifi-flow
+            - name: nifi-storage
               mountPath: /opt/nifi/nifi-current/flowfile_repository
               subPath: flowfile_repository
-            - name: nifi-state
+            - name: nifi-storage
               mountPath: /opt/nifi/nifi-current/state
               subPath: state
-            - name: nifi-db
+            - name: nifi-storage
               mountPath: /opt/nifi/nifi-current/database_repository
               subPath: database_repository
-            - name: nifi-provenance
+            - name: nifi-storage
               mountPath: /opt/nifi/nifi-current/provenance_repository
               subPath: provenance_repository
-            - name: nifi-content
+            - name: nifi-storage
               mountPath: /opt/nifi/nifi-current/content_repository
               subPath: content_repository
-            - name: nifi-python
+            - name: nifi-storage
               mountPath: /opt/nifi/nifi-current/python_extensions
               subPath: python_extensions
-            - name: nifi-nar
+            - name: nifi-storage
               mountPath: /opt/nifi/nifi-current/nar_extensions
               subPath: nar_extensions
       volumes:
