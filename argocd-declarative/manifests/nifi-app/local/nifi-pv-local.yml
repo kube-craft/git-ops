@@ -1,9 +1,9 @@
-#sudo mkdir -p /k8s/data/nifi-registry
-#sudo chmod 777 /k8s/data/nifi-registry
+#sudo mkdir -p /k8s/data/nifi
+#sudo chmod 777 /k8s/data/nifi
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: nifi-registry-local-pv
+  name: nifi-local-pv
 spec:
   capacity:
     storage: 1Gi
@@ -15,9 +15,9 @@ spec:
 
   storageClassName: local-storage
 
-## mkdir -p /k8s/data/nifi-registry
+## mkdir -p /k8s/data/nifi
   local:
-    path: /k8s/data/nifi-registry
+    path: /k8s/data/nifi
 #    path: /mnt/disks/ssd1
   nodeAffinity:
     required:

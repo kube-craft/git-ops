@@ -3,7 +3,8 @@ kind: Ingress
 metadata:
   name: nifi-ingress
   namespace: nifi
-#  annotations:
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
 #    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS" # To support HTTPS
 
 #    nginx.ingress.kubernetes.io/service-upstream: "true"  # Ensure NGINX looks for the service in another namespace
@@ -34,3 +35,13 @@ spec:
                 name: nifi-registry-svc
                 port:
                   number: 18080
+    - host: nifi.yourdomain.com  # Change this to your domain
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: nifi
+                port:
+                  number: 8443

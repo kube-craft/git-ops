@@ -1,0 +1,92 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nifi
+  namespace: nifi
+  # annotations:
+    # reloader.stakater.com/auto: "true"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nifi
+  template:
+    metadata:
+      labels:
+        app: nifi
+    spec:
+      containers:
+        - name: nifi
+          image: docker.io/apache/nifi:2.2.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8443
+          env:
+            - name: SINGLE_USER_CREDENTIALS_USERNAME
+              value: "admin"
+            - name: SINGLE_USER_CREDENTIALS_PASSWORD
+              value: "ctsBtRBKHRAx69Eq"
+            - name: NIFI_JVM_HEAP_INIT
+              value: "1g"
+            - name: NIFI_JVM_HEAP_MAX
+              value: "3g"
+            # - name: NIFI_HOME
+            #   value: "/opt/nifi/nifi-current"
+            # - name: NIFI_CONF_DIR
+            #   value: "/opt/nifi/nifi-current/conf"
+            # - name: NIFI_LOG_DIR
+            #   value: "/opt/nifi/nifi-current/logs"
+            # - name: NIFI_FLOW_STORAGE_DIR
+            #   value: "/opt/nifi/nifi-current/flowfile_repository"
+            # - name: NIFI_STATE_STORAGE_DIR
+            #   value: "/opt/nifi/nifi-current/state"
+            # - name: NIFI_DB_DIR
+            #   value: "/opt/nifi/nifi-current/database_repository"
+          volumeMounts:
+            - name: nifi-conf
+              mountPath: /opt/nifi/nifi-current/conf
+            - name: nifi-logs
+              mountPath: /opt/nifi/nifi-current/logs
+            - name: nifi-flow
+              mountPath: /opt/nifi/nifi-current/flowfile_repository
+            - name: nifi-state
+              mountPath: /opt/nifi/nifi-current/state
+            - name: nifi-db
+              mountPath: /opt/nifi/nifi-current/database_repository
+            - name: nifi-provenance
+              mountPath: /opt/nifi/nifi-current/provenance_repository
+            - name: nifi-content
+              mountPath: /opt/nifi/nifi-current/content_repository
+            - name: nifi-python
+              mountPath: /opt/nifi/nifi-current/python_extensions
+            - name: nifi-nar
+              mountPath: /opt/nifi/nifi-current/nar_extensions
+      volumes:
+        - name: nifi-conf
+          persistentVolumeClaim:
+            claimName: nifi-pvc
+        - name: nifi-logs
+          persistentVolumeClaim:
+            claimName: nifi-pvc
+        - name: nifi-flow
+          persistentVolumeClaim:
+            claimName: nifi-pvc
+        - name: nifi-state
+          persistentVolumeClaim:
+            claimName: nifi-pvc
+        - name: nifi-db
+          persistentVolumeClaim:
+            claimName: nifi-pvc
+        - name: nifi-provenance
+          persistentVolumeClaim:
+            claimName: nifi-pvc
+        - name: nifi-content
+          persistentVolumeClaim:
+            claimName: nifi-pvc
+        - name: nifi-python
+          persistentVolumeClaim:
+            claimName: nifi-pvc
+        - name: nifi-nar
+          persistentVolumeClaim:
+            claimName: nifi-pvc
