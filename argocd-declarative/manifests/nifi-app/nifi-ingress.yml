@@ -42,6 +42,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: nifi
+                name: nifi-svc
                 port:
                   number: 8443
