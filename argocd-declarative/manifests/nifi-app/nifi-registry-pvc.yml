@@ -1,8 +1,8 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: postgres-pvc
-  namespace: nifi
+  name: nifi-registry-pvc
+  namespace: nifi  
 spec:
   accessModes:
     - ReadWriteOnce
@@ -10,4 +10,4 @@ spec:
     requests:
       storage: 1Gi
   storageClassName: "local-storage"      
-  # storageClassName: "longhorn"        
+  # storageClassName: "longhorn"   

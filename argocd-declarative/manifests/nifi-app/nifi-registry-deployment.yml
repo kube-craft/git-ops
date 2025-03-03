@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nifi-registry
+  namespace: nifi  
+  labels:
+    app: nifi-registry
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nifi-registry
+  template:
+    metadata:
+      labels:
+        app: nifi-registry
+    spec:
+      containers:
+        - name: nifi-registry
+          image: docker.io/apache/nifi-registry:2.2.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 18080
+          volumeMounts:
+            - name: nifi-registry-data
+              mountPath: /opt/nifi-registry/nifi-registry-current/database
+      volumes:
+        - name: nifi-registry-data
+          persistentVolumeClaim:
+            claimName: nifi-registry-pvc

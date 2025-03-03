@@ -1,0 +1,32 @@
+#sudo mkdir -p /k8s/data/nifi-registry
+#sudo chmod 777 /k8s/data/nifi-registry
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: postgres-local-pv
+spec:
+  capacity:
+    storage: 1Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+#  persistentVolumeReclaimPolicy: Delete
+  persistentVolumeReclaimPolicy: Retain
+
+  storageClassName: local-storage
+
+## mkdir -p /k8s/data/nifi-registry
+  local:
+    path: /k8s/data/nifi-registry
+#    path: /mnt/disks/ssd1
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+        - matchExpressions:
+#            - key: kubernetes.io/hostname
+#              operator: In
+#              values:
+#                - kmaster
+#                - vik-k8s01
+            - key: node-role.kubernetes.io/control-plane
+              operator: Exists
