@@ -5,30 +5,23 @@ metadata:
   namespace: nifi
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
-    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS" # To support HTTPS
+#    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS" # To support HTTPS
 
 #    nginx.ingress.kubernetes.io/service-upstream: "true"  # Ensure NGINX looks for the service in another namespace
 #    nginx.ingress.kubernetes.io/ssl-redirect: "true" # Ensures that HTTP requests are redirected to HTTPS
 
-#    nginx.ingress.kubernetes.io/ssl-passthrough: "true"
 #    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
 #    nginx.ingress.kubernetes.io/ssl-passthrough: "true"
-#    nginx.ingress.kubernetes.io/proxy-redirect-from: https://localhost:8443
-#    nginx.ingress.kubernetes.io/proxy-redirect-to: https://jenkins.int.taqniat.ae    
-    nginx.ingress.kubernetes.io/upstream-vhost: localhost:8443
 spec:
   ingressClassName: nginx
   rules:
-    - host: nifi.int.taqniat.ae  # Change this to your domain
+    - host: nifi-registry.int.taqniat.ae
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: nifi-svc
+                name: nifi-registry-svc
                 port:
-                  number: 8443
-#  tls:
-#    - hosts:
-#      - jenkins.int.taqniat.ae
+                  number: 18080
