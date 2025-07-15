@@ -19,7 +19,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: nifi.int.taqniat.ae  # Change this to your domain
+    - host: nifi.int.taqniat.ae  # Change this to yourupstea ,domain
       http:
         paths:
           - path: /
